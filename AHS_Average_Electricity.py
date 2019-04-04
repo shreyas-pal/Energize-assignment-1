@@ -32,7 +32,7 @@ def average_energy(day_of_week,year,ahs_energy): # function to calculate the ave
     ahs_energy_day_year = ahs_energy_day[ahs_energy_day['Year'] == year]
     return (ahs_energy_day_year['HSKE'].mean(),ahs_energy_day_year['HSDG'].mean(),ahs_energy_day_year['LVPL'].mean(),ahs_energy_day_year['HSDL'].mean(),ahs_energy_day_year['HSM'].mean(),ahs_energy_day_year['HSCC'].mean(),ahs_energy_day_year['HSMC'].mean())
 
-mA16, mB16, mC16, mD16, mE16, mF16, mG16 = average_energy(0,2016,ahs_energy) # calls the function for each day and store the averaged to variables
+mA16, mB16, mC16, mD16, mE16, mF16, mG16 = average_energy(0,2016,ahs_energy) # calls the function for each day and store the averaged to data frame
 tA16, tB16, tC16, tD16, tE16, tF16, tG16 = average_energy(1,2016,ahs_energy)
 wA16, wB16, wC16, wD16, wE16, wF16, wG16 = average_energy(2,2016,ahs_energy)
 thA16, thB16, thC16, thD16, thE16, thF16, thG16 = average_energy(3,2016,ahs_energy)
@@ -61,7 +61,7 @@ sA18, sB18, sC18, sD18, sE18, sF18, sG18 = average_energy(6,2018,ahs_energy)
 
 
 
-ahs_average_energy2016 = pd.DataFrame({'Days': ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], # uses variables to make three data frames, one for each year
+ahs_average_energy2016 = pd.DataFrame({'Days': ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
                                   'HS Main (kWh)': [mA16, tA16, wA16, thA16, fA16, saA16, sA16],
                                    'LV Plug Loads (DHB)':  [mB16, tB16, wB16, thB16, fB16, saB16, sB16],
                                    'HS DL Lighting (kWh)':  [mC16, tC16, wC16, thC16, fC16, saC16, sC16],
@@ -91,14 +91,12 @@ ahs_average_energy2018 = pd.DataFrame({'Days': ['Monday','Tuesday','Wednesday','
                                    'HS CC Collins Center (kWh)':  [mG18, tG18, wG18, thG18, fG18, saG18, sG18]
                                    })
 
-ahs_energy_csv = open("averageEnergy.csv","w+") # writes the dataframes into a csv file
-ahs_energy_csv.write("Electricity used by AHS between 23:00 hrs and 4:00 hrs")
-ahs_energy_csv.write("\n2016 \n")
-ahs_energy_csv.write(str(ahs_average_energy2016))
-ahs_energy_csv.write("\n2017 \n")
-ahs_energy_csv.write(str(ahs_average_energy2017))
-ahs_energy_csv.write("\n2018 \n")
-ahs_energy_csv.write(str(ahs_average_energy2018))
+data = [ahs_average_energy2016, ahs_average_energy2017, ahs_average_energy2018]
+ahs_energy_data= pd.concat(data, keys=['2016', '2017', '2018'])
+
+ahs_energy_csv = open("averageEnergy.csv","w+")
+ahs_energy_csv.write("Electricity used by AHS between 23:00 hrs and 4:00 hrs\n\n")
+ahs_energy_data.to_csv("averageEnergy.csv", sep=',')
 ahs_energy_csv.close()
 
 

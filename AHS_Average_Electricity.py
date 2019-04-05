@@ -30,7 +30,10 @@ ahs_energy['Year'] = ahs_energy['Date'].dt.year # makes a year column to seperat
 def average_energy(day_of_week,year,ahs_energy): # function to calculate the average energy by filtering through the data using the day of the week and year
     ahs_energy_day = ahs_energy[ahs_energy['Weekday'] == day_of_week]
     ahs_energy_day_year = ahs_energy_day[ahs_energy_day['Year'] == year]
-    return (ahs_energy_day_year['HSKE'].mean(),ahs_energy_day_year['HSDG'].mean(),ahs_energy_day_year['LVPL'].mean(),ahs_energy_day_year['HSDL'].mean(),ahs_energy_day_year['HSM'].mean(),ahs_energy_day_year['HSCC'].mean(),ahs_energy_day_year['HSMC'].mean())
+    return (ahs_energy_day_year['HSM'].mean(),ahs_energy_day_year['LVPL'].mean(),ahs_energy_day_year['HSDL'].mean(),ahs_energy_day_year['HSDG'].mean(),ahs_energy_day_year['HSKE'].mean(),ahs_energy_day_year['HSMC'].mean(),ahs_energy_day_year['HSCC'].mean())
+
+
+
 
 mA16, mB16, mC16, mD16, mE16, mF16, mG16 = average_energy(0,2016,ahs_energy) # calls the function for each day and store the averaged to data frame
 tA16, tB16, tC16, tD16, tE16, tF16, tG16 = average_energy(1,2016,ahs_energy)
@@ -61,7 +64,9 @@ sA18, sB18, sC18, sD18, sE18, sF18, sG18 = average_energy(6,2018,ahs_energy)
 
 
 
-ahs_average_energy2016 = pd.DataFrame({'Days': ['Monday 2016','Tuesday 2016','Wednesday 2016','Thursday 2016','Friday 2016','Saturday 2016','Sunday 2016'],'HS Main (kWh)': [mA16, tA16, wA16, thA16, fA16, saA16, sA16],'LV Plug Loads (DHB)':  [mB16, tB16, wB16, thB16, fB16, saB16, sB16],
+ahs_average_energy2016 = pd.DataFrame({'Days': ['Monday 2016','Tuesday 2016','Wednesday 2016','Thursday 2016','Friday 2016','Saturday 2016','Sunday 2016'],
+                                    'HS Main (kWh)': [mA16, tA16, wA16, thA16, fA16, saA16, sA16],
+                                      'LV Plug Loads (DHB)':  [mB16, tB16, wB16, thB16, fB16, saB16, sB16],
                                    'HS DL Lighting (kWh)':  [mC16, tC16, wC16, thC16, fC16, saC16, sC16],
                                    'HS DG Gym (kWh)':  [mD16, tD16, wD16, thD16, fD16, saD16, sD16],
                                    'HS Kitchen Emergency (kWh)':  [mE16, tE16, wE16, thE16, fE16, saE16, sE16],
@@ -88,7 +93,6 @@ ahs_average_energy2018 = pd.DataFrame({'Days': ['Monday 2018','Tuesday 2018','We
                                    'HS M1 Chillers (kWh)':  [mF18, tF18, wF18, thF18, fF18, saF18, sF18],
                                    'HS CC Collins Center (kWh)':  [mG18, tG18, wG18, thG18, fG18, saG18, sG18]
                                    })
-
 data = [ahs_average_energy2016, ahs_average_energy2017, ahs_average_energy2018]
 ahs_energy_data= pd.concat(data)
 

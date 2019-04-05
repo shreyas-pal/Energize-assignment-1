@@ -92,11 +92,10 @@ ahs_average_energy2018 = pd.DataFrame({'Days': ['Monday 2018','Tuesday 2018','We
 data = [ahs_average_energy2016, ahs_average_energy2017, ahs_average_energy2018]
 ahs_energy_data= pd.concat(data)
 
-
-#ahs_energy_csv.write("Electricity used by AHS between 23:00 hrs and 4:00 hrs\n\n")
-ahs_energy_data.to_csv("averageEnergy.csv", sep=',', index_label="Electricity used by AHS between 23:00 hrs and 4:00 hrs")
-#ahs_energy_csv.close()
-
+ahs_energy_csv = open("averageEnergy.csv","w+")
+ahs_energy_csv.write("Electricity used by AHS between 23:00 hrs and 4:00 hrs\n\n")
+ahs_energy_data.to_csv("averageEnergy.csv", sep=',', index_label="Electricity used by AHS between 23:00 hrs and 4:00 hrs     ")
+ahs_energy_csv.close()
 
 
 

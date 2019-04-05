@@ -61,9 +61,7 @@ sA18, sB18, sC18, sD18, sE18, sF18, sG18 = average_energy(6,2018,ahs_energy)
 
 
 
-ahs_average_energy2016 = pd.DataFrame({'Days': ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
-                                  'HS Main (kWh)': [mA16, tA16, wA16, thA16, fA16, saA16, sA16],
-                                   'LV Plug Loads (DHB)':  [mB16, tB16, wB16, thB16, fB16, saB16, sB16],
+ahs_average_energy2016 = pd.DataFrame({'Days': ['Monday 2016','Tuesday 2016','Wednesday 2016','Thursday 2016','Friday 2016','Saturday 2016','Sunday 2016'],'HS Main (kWh)': [mA16, tA16, wA16, thA16, fA16, saA16, sA16],'LV Plug Loads (DHB)':  [mB16, tB16, wB16, thB16, fB16, saB16, sB16],
                                    'HS DL Lighting (kWh)':  [mC16, tC16, wC16, thC16, fC16, saC16, sC16],
                                    'HS DG Gym (kWh)':  [mD16, tD16, wD16, thD16, fD16, saD16, sD16],
                                    'HS Kitchen Emergency (kWh)':  [mE16, tE16, wE16, thE16, fE16, saE16, sE16],
@@ -71,7 +69,7 @@ ahs_average_energy2016 = pd.DataFrame({'Days': ['Monday','Tuesday','Wednesday','
                                    'HS CC Collins Center (kWh)':  [mG16, tG16, wG16, thG16, fG16, saG16, sG16]
                                    })
 
-ahs_average_energy2017 = pd.DataFrame({'Days': ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+ahs_average_energy2017 = pd.DataFrame({'Days': ['Monday 2017','Tuesday 2017','Wednesday 2017','Thursday 2017','Friday 2017','Saturday 2017','Sunday 2017'],
                                    'HS Main (kWh)': [mA17, tA17, wA17, thA17, fA17, saA17, sA17],
                                    'LV Plug Loads (DHB)':  [mB17, tB17, wB17, thB17, fB17, saB17, sB17],
                                    'HS DL Lighting (kWh)':  [mC17, tC17, wC17,thC17, fC17, saC17, sC17],
@@ -81,8 +79,8 @@ ahs_average_energy2017 = pd.DataFrame({'Days': ['Monday','Tuesday','Wednesday','
                                    'HS CC Collins Center (kWh)':  [mG17, tG17, wG17, thG17, fG17, saG17, sG17]
                                    })
 
-ahs_average_energy2018 = pd.DataFrame({'Days': ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
-                                   'HS Main (kWh)': [mA18, tA18, wA18, thA18, fA18, saA18, sA18],
+ahs_average_energy2018 = pd.DataFrame({'Days': ['Monday 2018','Tuesday 2018','Wednesday 2018','Thursday 2018','Friday 2018','Saturday 2018','Sunday 2018'],
+                                       'HS Main (kWh)': [mA18, tA18, wA18, thA18, fA18, saA18, sA18],
                                    'LV Plug Loads (DHB)':  [mB18, tB18, wB18, thB18, fB18, saB18, sB18],
                                    'HS DL Lighting (kWh)':  [mC18, tC18, wC18,thC18, fC18, saC18, sC18],
                                    'HS DG Gym (kWh)':  [mD18, tD18, wD18, thD18, fD18, saD18, sD18],
@@ -92,17 +90,12 @@ ahs_average_energy2018 = pd.DataFrame({'Days': ['Monday','Tuesday','Wednesday','
                                    })
 
 data = [ahs_average_energy2016, ahs_average_energy2017, ahs_average_energy2018]
-ahs_energy_data= pd.concat(data, keys=['2016', '2017', '2018'])
-
-ahs_energy_csv = open("averageEnergy.csv","w+")
-ahs_energy_csv.write("Electricity used by AHS between 23:00 hrs and 4:00 hrs\n\n")
-ahs_energy_data.to_csv("averageEnergy.csv", sep=',')
-ahs_energy_csv.close()
+ahs_energy_data= pd.concat(data)
 
 
-
-
-
+#ahs_energy_csv.write("Electricity used by AHS between 23:00 hrs and 4:00 hrs\n\n")
+ahs_energy_data.to_csv("averageEnergy.csv", sep=',', index_label="Electricity used by AHS between 23:00 hrs and 4:00 hrs")
+#ahs_energy_csv.close()
 
 
 
